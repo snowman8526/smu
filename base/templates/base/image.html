@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+
+<form action="" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{form|crispy}}
+    <input type="submit" value="Отправить фото" name="TeamForm" />
+</form>
+<br>
+<br>
+{% if text %}
+<hr>
+<b><h1>{{ text.name }}</h1></b>
+<br>
+<div class="col-sm-10 list-group-item list-group-item-info">
+    {{ text.text }}</div>
+<div class="col-sm-2">
+    <img src={{ text.image.url }} width="230"></div>
+
+<br>
+
+<hr>
+<b>Рецепт</b>
+<br>
+<div class="col-sm-10 list-group-item list-group-item-info">
+    {{ text.recept }}</div>
+<br>
+{% endif %}
+
+
+
+{% endblock content %}

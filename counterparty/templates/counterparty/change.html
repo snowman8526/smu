@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form class="form-inline" name="search" action="{% url 'CounterpartyList' %}">
+    <input id="serch-people" type="search" placeholder="search" aria-label="Search" name="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+</form>
+
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <!--<p>Фамилия</p>
+    {{ form.lastName }}<br />
+    <p>Имя</p>
+    {{ form.firstName }}<br />
+    <p>Адрес</p>
+    {{ form.adress }}<br />
+    <p>Телефон</p>
+    {{ form.telephone }}<br />
+    <p>email</p>
+    {{ form.email }}<br />
+    {{ form.photo }}<br /> -->
+
+    <input type="submit" class="btn btn-success btn-block" name="change" value="Изменить">
+
+</form>
+
+
+{% endblock content %}

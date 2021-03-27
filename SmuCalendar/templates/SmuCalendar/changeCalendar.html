@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form class="form-inline" name="search" action="{% url 'CounterpartyList' %}">
+    <input id="serch-people" type="search" placeholder="search" aria-label="Search" name="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+</form>
+
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-sm-6">
+        <table class="table">
+        {{ forms.as_table }}
+        </table>
+    </div>
+    <!--<p>Фамилия</p>
+    {{ form.lastName }}<br />
+    <p>Имя</p>
+    {{ form.firstName }}<br />
+    <p>Адрес</p>
+    {{ form.adress }}<br />
+    <p>Телефон</p>
+    {{ form.telephone }}<br />
+    <p>email</p>
+    {{ form.email }}<br />
+    {{ form.photo }}<br /> -->
+
+    <input type="submit" class="btn btn-success btn-block" name="add" value="прикрепить">
+
+</form>
+
+
+{% endblock content %}
+
+{% block script %}
+<!--<script>
+        $.ajax({type: 'GET',
+        url: "{% url 'counterpartyView' %}",
+        data: {counterparty: $(this).val()},
+        success: function(data){
+            $("#id_counterparty").val($(this).val());
+            console.log(data);
+            $.each(data, function(key, value) {
+                $('#id_counterparty2').append('<option value="' + key + '">' + value + '</option>');
+            });
+
+        }})
+
+
+
+        function retime(option, op2){
+        if ($('#' + option + ' option').length > 1 || $('#' + option + ' option').length == 0){
+            $("#" + option).empty();
+            $('#' + option).append('<option value="' + "choce" + '">' + op2 + '</option>');
+            $("#" + option).attr("disabled", "disabled");
+        };
+    };
+        $("#id_timeMontage").attr("disabled", "disabled");
+        retime("id_timeMontage","Выбирите дату");
+
+        $("#id_dateMontage").change(function(){
+        retime("id_timeMontage","Выбирите дату");
+
+        $.ajax({type: 'GET',
+        url: "{% url 'timeMontage' %}",
+        data: {installer: $("#id_installer").val() ,dateMontage: $(this).val()},
+        success: function(data){
+            $("#id_timeMontage").removeAttr("disabled");
+            //console.log(data);
+            $.each(data, function(key, value) {
+                $('#id_timeMontage').append('<option value="' + key + '">' + value + '</option>');
+            });
+
+        }})});
+</script> -->
+{% endblock script %}

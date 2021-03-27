@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<form class="form-inline" name="search" action="{% url 'CounterpartyList' %}">
+    <input id="serch-people" type="search" placeholder="search" aria-label="Search" name="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+</form>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Фамилия</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Телефон</th>
+        <th scope="col">Группа</th>
+    </tr>
+  </thead>
+
+{% for install in installer %}
+
+    <thead>
+    <tr>
+        <th scope="col"><a href="{{ install.get_absolute_url }}">{{ install.firstNameInstaller }}</a></th>
+        <th scope="col">{{ install.lastNameInstaller }}</th>
+        <th scope="col">{{ install.telephone }}</th>
+        <th scope="col">{{ install.groupInstaller }}</th>
+    </tr>
+  </thead>
+
+
+{% endfor %}
+</table>
+
+{% endblock content %}

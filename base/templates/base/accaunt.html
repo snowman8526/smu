@@ -1,0 +1,77 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<h3 class="text-center">Личный кабинет пользователя {{ request.user }}</h3>
+<hr>
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputEmail4">Логин:</label><br/>
+      {{ form.username }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Фамилия</label>
+      {{ form.last_name }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Имя</label>
+      {{ form.first_name }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Отчество</label>
+      {{ form2.patronymic }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>День рождения</label>
+      {{ form2.dateOfBirth }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Город проживания</label>
+      {{ form2.sityWork }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Email</label>
+      {{ form.email }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Последний вход</label>
+      {{ form.last_login }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Активный</label>
+      {{ form.is_active }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Сантехник</label>
+      {{ form2.santehnik }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Электрик</label>
+      {{ form2.electrik }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Мэнаджер</label>
+      {{ form2.manager }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>компания</label>
+      {{ form2.company }}
+    </div>
+    <div class="form-group col-md-12">
+      <label>Пользователь</label>
+      {{ form2.people }}
+    </div>
+  </div>
+    {{form.manager}}
+
+    <input type="submit" class="btn btn-success btn-block" name="rename" value="изменить">
+
+</form>
+
+
+{% endblock content %}

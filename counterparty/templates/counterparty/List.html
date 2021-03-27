@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<form class="form-inline" name="search" action="{% url 'CounterpartyList' %}">
+    <input id="serch-people" type="search" placeholder="search" aria-label="Search" name="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+</form>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Фотография</th>
+        <th scope="col">Фамилия</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Телефон</th>
+        <th scope="col">Электронная почта</th>
+        <th scope="col">Добавить монтаж</th>
+    </tr>
+  </thead>
+
+{% for counterpart in counterparty %}
+
+    <thead>
+    <tr>
+        {% if counterpart.photo == "" %}
+        <th scope="col"></th>
+        {% else %}
+        <th scope="col"><img src="{{ counterpart.photo.url }}" class="img-fluid" width="150" height="100"></th>
+        {% endif %}
+
+        <th scope="col"><a href="{{ counterpart.get_absolute_url }}">{{ counterpart.firstName }}</a></th>
+        <th scope="col">{{ counterpart.lastName }}</th>
+        <th scope="col">{{ counterpart.adress }}</th>
+        <th scope="col">{{ counterpart.telephone }}</th>
+        <th scope="col">{{ counterpart.email }}</th>
+        <th scope="col"><a href="{% url 'addCalendarMontag' counterpart.id %}">Добавить монтаж</a></th>
+    </tr>
+  </thead>
+
+
+    <div class="row">
+    <div class="col-sm-1"></div>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-4"></div>
+</div>
+
+{% endfor %}
+</table>
+
+{% endblock content %}

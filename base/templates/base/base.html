@@ -1,0 +1,110 @@
+<!doctype html>
+
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/stile.css' %}" rel="stylesheet">
+
+    <title>
+        {%block title%}
+        Document
+        {%endblock title%}
+    </title>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-danger text-primary">
+  <a class="navbar-brand" href="/">СМУ</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">CMU <span class="sr-only">(current)</span></a>
+      </li>
+	  <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Задачи
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/">Все задачи за день</a>
+          <a class="dropdown-item" href="/add">Добавить задачу</a>
+        </div>
+      </li>
+	  <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Монтажники
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/installer">Найти монтажника</a>
+          <a class="dropdown-item" href="/installer/add">Добавить Монтажника</a>
+		  <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/installer/listGroup">Группы монтажников</a>
+		  <a class="dropdown-item" href="/installer/addGroup">Добавить группу</a>
+        </div>
+      </li>
+	  <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Клиенты
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/counterparty">Найти клиента</a>
+          <a class="dropdown-item" href="/counterparty/add">Добавить клиента</a>
+        </div>
+      </li>
+        <!--<li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>-->
+    </ul>
+
+
+    <ul class="navbar-nav ml-auto">
+
+        {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <p class="navbar-text">Здравствуйте гость!</p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registration' %}">регистрация</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <p class="navbar-text">Здравствуйте, {{ request.user }}</p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accaunt' %}">Личный кабинет</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                    </li>
+                {% endif %}
+
+    </ul>
+  </div>
+</nav>
+{% block content %}
+
+
+{% endblock content %}
+
+<script src='{% static "js/jquery.js" %}'></script>
+<script src='{% static "js/bootstrap.js" %}'></script>
+{% block script %}
+
+{% endblock script %}
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+миграции			        python3 manage.py makemigrations
+миграции			        python3 manage.py migrate
+исправление			        python3 manage.py migrate --run-syncdb
+создать супер пользователя	python3 manage.py createsuperuser
+раздача для интернета		python3 manage.py runserver 0.0.0.0:8000
+колекция файлов             python3 manage.py collectstatic
+

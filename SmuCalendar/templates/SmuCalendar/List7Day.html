@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<form class="form-inline" name="search" action="{% url 'CounterpartyList' %}">
+    <input id="serch-people" type="search" placeholder="search" aria-label="Search" name="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+</form>
+<form class="form-inline" name="date" action="{% url 'calendar' %}">
+    <input type="date" name="date">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">перейти на дату</button>
+
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Монтажник</th>
+        {% for da in date %}
+        <th scope="col">{{ da }}</th>
+        {% endfor %}
+    </tr>
+  </thead>
+
+    <thead>
+    <tr>
+        <th scope="col">не распределённые монтажи</th>
+        {% for da in date %}
+        <th scope="col">
+		    {% for mon in montage %}
+            {% if mon.installer == None and da == mon.dateMontage %}
+            <a href="{{ mon.get_absolute_url }}">{{ mon.counterparty }}</a>
+            <br/>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </th>
+{% for install in installer %}
+
+    <thead>
+    <tr>
+        <th scope="col">{{ install.lastName }}</th>
+        {% for da in date %}
+        <th scope="col">
+		{% for time in timeMontage %}
+            <div class="row border"><div class="col-sm-5">{{time.time}}</div><div class="col-sm-5">
+            {% for mon in montage %}
+            {% if install.id == mon.installer.id and da == mon.dateMontage and mon.timeMontage.id == time.id %}
+            <a href="{{ mon.get_absolute_url }}">{{ mon.counterparty }}</a>
+            {% endif %}
+            {% endfor %}</div></div>
+            {% endfor %}
+        </th>
+        {% endfor %}
+    </tr>
+  </thead>
+{% endfor %}
+</table>
+
+{% endblock content %}
